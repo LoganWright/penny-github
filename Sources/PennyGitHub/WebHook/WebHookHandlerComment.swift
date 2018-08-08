@@ -2,6 +2,7 @@ import Vapor
 import PennyConnector
 import Mint
 import Penny
+import Foundation
 
 extension WebHookHandler {
     internal func handleComment() throws -> Future<HTTPStatus> {
