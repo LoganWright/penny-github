@@ -44,7 +44,7 @@ extension Comment {
     fileprivate func userLoginsToGift() -> [String] {
         let from = user.login
         return body.split(separator: " ")
-            .filter { $0.hasPrefix("@") }
+            .filter { $0.first == "@" }
             .map { $0.dropFirst() }
             .map { String($0) }
             .filter { $0 != from }
