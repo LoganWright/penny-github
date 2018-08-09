@@ -19,7 +19,7 @@ extension Container {
 
 extension Future where T == Response {
     func become<C: Content>(_ type: C.Type = C.self) -> Future<C> {
-        return flatMap(to: C.self) { result in print(result); return try result.content.decode(C.self) }
+        return flatMap(to: C.self) { result in return try result.content.decode(C.self) }
     }
 }
 
