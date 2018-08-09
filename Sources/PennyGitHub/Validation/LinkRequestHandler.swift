@@ -8,7 +8,6 @@ struct LinkRequestHandler {
     let ghlr: GitHubLinkRequest
 
     func handle() throws -> Future<AccountLinkRequest> {
-        print("handling...")
         let user = try associatedUser()
         let issue = try postValidationIssue()
         return user.and(issue).flatMap(handle)
@@ -23,7 +22,6 @@ struct LinkRequestHandler {
     }
 
     private func handle(user: User, issue: Issue) throws -> Future<AccountLinkRequest> {
-        print("got user and issue")
         let link = AccountLinkRequest(
             initiationSource: ghlr.source,
             initiationId: ghlr.sourceId,
@@ -31,7 +29,6 @@ struct LinkRequestHandler {
             requestedId: user.id.description,
             reference: issue.number.description
         )
-        print("req")
         return try worker.penny.linkRequests.add(link)
     }
 }
